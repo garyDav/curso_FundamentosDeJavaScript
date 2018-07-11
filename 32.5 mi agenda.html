@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Callbacks</title>
+</head>
+<body>
+
+  <h1 id="agenda">Estoy despertando</h1>
+
+  <script>
+    const DESPERTAR = 3000,
+          PLATZI = 5000,
+          EJERCICIOS = 4000,
+          DUCHA = 2000,
+          CLASES = 5000,
+          ESTUDIO = 4000,
+          $agenda = document.getElementById('agenda')
+
+      function despertar() {
+        return new Promise((resolve, reject)=>{
+          setTimeout(()=>{
+            resolve('Estudio Platzi :D')
+          }, DESPERTAR)
+        })
+      }
+
+      function platzi(res) {
+        $agenda.textContent = res
+        return new Promise((resolve, reject)=>{
+          setTimeout(()=>{
+            // resolve('Empiezo a Ejercitar')
+            reject('No dio tiempo para hacer ejercicios')
+          }, PLATZI)
+        })
+      }
+
+      function ejercicios(res) {
+        $agenda.textContent = res
+        return new Promise((resolve, reject)=>{
+          setTimeout(()=>{
+            resolve('Ahora me estoy duchando')
+          }, EJERCICIOS)
+        })
+      }
+
+      function duchar(res) {
+        $agenda.textContent = res
+        return new Promise((resolve, reject)=>{
+          setTimeout(()=>{
+            resolve('Hora de ir a clases')
+          }, DUCHA)
+        })
+      }
+
+      function clases(res) {
+        $agenda.textContent = res
+        return new Promise((resolve, reject)=>{
+          setTimeout(()=>{
+            resolve('Estudiar para mis clases')
+          }, CLASES)
+        })
+      }
+
+      function estudiar(res) {
+        $agenda.textContent = res
+        return new Promise((resolve, reject)=>{
+          setTimeout(()=>{
+            resolve('Pinche wea terminó mi día')
+          }, ESTUDIO)
+        })
+      }
+
+      function error(err) {
+        $agenda.style.color = 'red'
+        $agenda.textContent = err
+      }
+
+      despertar()
+        .then(platzi)
+        .then(ejercicios)
+        .then(duchar)
+        .then(clases)
+        .then(estudiar)
+        .then((res)=>{
+          $agenda.textContent = res
+        })
+        .catch(error)
+
+  </script>
+</body>
+</html>

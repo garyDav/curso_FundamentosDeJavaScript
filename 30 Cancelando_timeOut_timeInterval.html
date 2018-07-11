@@ -1,0 +1,62 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cancel time</title>
+</head>
+<body>
+  <div>
+    <h1></h1>
+    <button id=cancel-button>Cancel</button>
+  </div>
+
+  <script>
+    // setInterval(que voy a hacer?, cada cuanto tiempo debo hacerlo?)
+    const $cancelButton = document.getElementById('cancel-button')
+    const timeout = setTimeout(() => {
+      alert('han pasado 5 segundos')
+    }, 5000)
+    // $cancelButton.addEventListener('que evento', que hago?)
+    $cancelButton.addEventListener('click', () => {
+      clearTimeout(timeout)
+    })
+
+  </script>
+</body>
+</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>setInterval</title>
+</head>
+<body>
+
+  <h1 id="timer">Ha pasado 0 segundos</h1>
+  <button id="cancel-button">Cancel</button>
+
+  <script>
+    // setInterval(que voy a hacer?, cada cuanto tiempo debo hacerlo?)
+    const $timer = document.getElementById('timer')
+    let counter = 0
+    const interval = setInterval(() => {
+      counter++
+      if(counter == 1)
+        $timer.textContent = `Ha pasado ${counter} segundo`
+      else
+        $timer.textContent = `Ha pasado ${counter} segundos`
+      // console.log('Han pasado 1 segundo')
+    }, 1000)
+    const $cancelButton = document.getElementById('cancel-button')
+    $cancelButton.addEventListener('click', ()=>{
+      clearInterval(interval)
+    })
+  </script>
+</body>
+</html>
